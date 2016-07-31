@@ -18,12 +18,29 @@ namespace OneNoteStats
                 return;
             }
             string notebookNickName = args[0];
-            string dumpListFilePath = null;
-            if (args.Length >= 2) dumpListFilePath = Path.GetFullPath(args[1]);
+            string dumpListFilePath;
+            if (args.Length >= 2)
+            {
+                dumpListFilePath = Path.GetFullPath(args[1]);
+            }
+            else
+            {
+                dumpListFilePath = Path.GetFullPath(notebookNickName + @".tsv");
+            }
 
             if (!Directory.Exists(Path.GetDirectoryName(dumpListFilePath)))
             {
-                Console.Error.WriteLine(@"Could not find the parent folder path '{0}'.", dumpListFilePath);
+                Console.Error.WriteLine(@"Could not find the parent folder path ""{0}"".", dumpListFilePath);
+                return;
+            }
+            if (Directory.Exists(dumpListFilePath))
+            {
+                Console.Error.WriteLine(@"""{0}"" is exists as directory.", dumpListFilePath);
+                return;
+            }
+            if (File.Exists(dumpListFilePath))
+            {
+                Console.Error.WriteLine(@"""{0}"" is exists.", dumpListFilePath);
                 return;
             }
 
@@ -33,19 +50,9 @@ namespace OneNoteStats
             Console.WriteLine(@"SectionGroup: {0}", notebook.SectionGroupCount);
             Console.WriteLine(@"Section     : {0}", notebook.SectionCount);
             Console.WriteLine(@"Page        : {0}", notebook.PageCount);
+            Console.WriteLine(@"DumpListFile: {0}", dumpListFilePath);
 
-            if (dumpListFilePath != null)
-            {
-                try
-                {
-                    writeDumpListFile(notebook, dumpListFilePath);
-                    Console.WriteLine(@"DumpListFile: {0}", dumpListFilePath);
-                }
-                catch (DirectoryNotFoundException ex)
-                {
-                    Console.Error.WriteLine(ex.Message);
-                }
-            }
+            writeDumpListFile(notebook, dumpListFilePath);
         }
 
         private static void writeDumpListFile(NotebookStats notebook, string dumpListFilePath)

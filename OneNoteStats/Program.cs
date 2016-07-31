@@ -19,7 +19,7 @@ namespace OneNoteStats
             }
             string notebookNickName = args[0];
             string dumpListFilePath = null;
-            if (args.Length >= 2) dumpListFilePath = args[1];
+            if (args.Length >= 2) dumpListFilePath = Path.GetFullPath(args[1]);
 
             if (!Directory.Exists(Path.GetDirectoryName(dumpListFilePath)))
             {

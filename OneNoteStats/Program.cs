@@ -51,17 +51,14 @@ namespace OneNoteStats
             Console.WriteLine(@"Section     : {0}", notebook.SectionCount);
             Console.WriteLine(@"Page        : {0}", notebook.PageCount);
 
-            if (dumpListFilePath != null)
+            try
             {
-                try
-                {
-                    writeDumpListFile(notebook, dumpListFilePath);
-                    Console.WriteLine(@"DumpListFile: {0}", dumpListFilePath);
-                }
-                catch (DirectoryNotFoundException ex)
-                {
-                    Console.Error.WriteLine(ex.Message);
-                }
+                writeDumpListFile(notebook, dumpListFilePath);
+                Console.WriteLine(@"DumpListFile: {0}", dumpListFilePath);
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                Console.Error.WriteLine(ex.Message);
             }
         }
 

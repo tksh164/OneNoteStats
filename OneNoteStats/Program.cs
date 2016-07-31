@@ -26,6 +26,16 @@ namespace OneNoteStats
                 Console.Error.WriteLine(@"Could not find the parent folder path ""{0}"".", dumpListFilePath);
                 return;
             }
+            if (Directory.Exists(dumpListFilePath))
+            {
+                Console.Error.WriteLine(@"""{0}"" is exists as directory.", dumpListFilePath);
+                return;
+            }
+            if (File.Exists(dumpListFilePath))
+            {
+                Console.Error.WriteLine(@"""{0}"" is exists.", dumpListFilePath);
+                return;
+            }
 
             NotebookStats notebook = new NotebookStats(notebookNickName);
 

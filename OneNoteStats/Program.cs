@@ -111,18 +111,19 @@ namespace OneNoteStats
         private static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
         {
             Exception ex = e.ExceptionObject as Exception;
-            if (ex != null)
+            int nestLevel = 0;
+
+            while (ex != null)
             {
                 Console.Error.WriteLine();
-                Console.Error.WriteLine(@"**** EXCEPTION ****");
+                Console.Error.WriteLine(@"**** EXCEPTION (Level:{0}) ****", nestLevel);
                 Console.Error.WriteLine(ex.Message);
                 Console.Error.WriteLine(@"Exception: {0}", ex.GetType().FullName);
                 Console.Error.WriteLine(@"**** STACK TRACE ****");
                 Console.Error.WriteLine(ex.StackTrace);
-            }
-            else
-            {
-                Console.Error.WriteLine(e.ExceptionObject.ToString());
+
+                ex = ex.InnerException;
+                nestLevel++;
             }
 
             Environment.Exit(-1);

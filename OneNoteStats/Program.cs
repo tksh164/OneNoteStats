@@ -52,14 +52,7 @@ namespace OneNoteStats
             Console.WriteLine(@"Page        : {0}", notebook.PageCount);
             Console.WriteLine(@"DumpListFile: {0}", dumpListFilePath);
 
-            try
-            {
-                writeDumpListFile(notebook, dumpListFilePath);
-            }
-            catch (DirectoryNotFoundException ex)
-            {
-                Console.Error.WriteLine(ex.Message);
-            }
+            writeDumpListFile(notebook, dumpListFilePath);
         }
 
         private static void writeDumpListFile(NotebookStats notebook, string dumpListFilePath)

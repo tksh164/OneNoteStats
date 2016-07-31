@@ -23,7 +23,7 @@ namespace OneNoteStats
 
             if (!Directory.Exists(Path.GetDirectoryName(dumpListFilePath)))
             {
-                Console.Error.WriteLine(@"Could not find the parent folder path '{0}'.", dumpListFilePath);
+                Console.Error.WriteLine(@"Could not find the parent folder path ""{0}"".", dumpListFilePath);
                 return;
             }
 

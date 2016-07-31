@@ -18,8 +18,15 @@ namespace OneNoteStats
                 return;
             }
             string notebookNickName = args[0];
-            string dumpListFilePath = null;
-            if (args.Length >= 2) dumpListFilePath = Path.GetFullPath(args[1]);
+            string dumpListFilePath;
+            if (args.Length >= 2)
+            {
+                dumpListFilePath = Path.GetFullPath(args[1]);
+            }
+            else
+            {
+                dumpListFilePath = Path.GetFullPath(notebookNickName + @".tsv");
+            }
 
             if (!Directory.Exists(Path.GetDirectoryName(dumpListFilePath)))
             {

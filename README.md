@@ -1,7 +1,5 @@
 # OneNoteStats
 
-[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/tksh164/OneNoteStats)
-
 This is command-line tool for OneNote notebook.
 
 ## License

@@ -1,6 +1,6 @@
 # OneNoteStats
 
-This is command-line tool for OneNote notebook.
+This is a command-line tool for OneNote notebook.
 
 ## License
 
